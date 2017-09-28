@@ -32,18 +32,17 @@ listen 443 ssl;
     proxy_pass_request_headers on;
     more_set_input_headers 'Authorization: $http_authorization';
     proxy_set_header Accept-Encoding "";
-    more_set_headers -s 401 'WWW-Authenticate: Basic realm="[internalip]"';
+    more_set_headers -s 401 'WWW-Authenticate: Basic realm="fqlocaldomain"';
     proxy_buffering off;
     proxy_set_header Connection "Keep-Alive";
 
-
-
-  location ~* ^/owa { proxy_pass https://[internalip]; }
-  location ~* ^/Microsoft-Server-ActiveSync { proxy_pass https://[internalip]; }
-  location ~* ^/ecp { proxy_pass https://[internalip]; }
-  location ~* ^/rpc { proxy_pass https://[internalip]; }
-  location ~* ^/autodiscover { proxy_pass https://[internalip]; } //Server m
-  location ~* ^/ews { proxy_pass https://[internalip]; }
+    location ~* ^/owa { proxy_pass https://fqlocaldomain; }
+    location ~* ^/Microsoft-Server-ActiveSync { proxy_pass https://fqlocaldomain; }
+    location ~* ^/ecp { proxy_pass https://fqlocaldomain; }
+    location ~* ^/rpc { proxy_pass https://fqlocaldomain; }
+    location ~* ^/mapi { proxy_pass https://fqlocaldomain; }
+    location ~* ^/ews { proxy_pass https://fqlocaldomain; }
+    location ~* ^/autodiscover { proxy_pass https://fqlocaldomain; }
 }
 server {
     listen 80;
