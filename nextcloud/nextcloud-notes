@@ -1,0 +1,2 @@
+Fix Collabora Proxy issue
+sudo docker run -t -d -p 9980:9980 -e 'domain=[subdom]\.[domain]\.co\.uk' --restart always --cap-add MKNOD collabora/code
